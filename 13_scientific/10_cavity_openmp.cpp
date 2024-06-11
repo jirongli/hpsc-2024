@@ -103,6 +103,7 @@ int main() {
                                + nu * dt / (dy * dy) * (vn[j+1][i] - 2 * vn[j][i] + vn[j-1][i]);
       }
     }
+    #pragma omp parallel
     for (int j=0; j<ny; j++) {
         // Compute u[j][0], u[j][nx-1], v[j][0], v[j][nx-1]
         u[j][0] = 0;
@@ -110,6 +111,7 @@ int main() {
         v[j][0] = 0;
         v[j][nx-1] = 0;
     }
+    #pragma omp parallel 
     for (int i=0; i<nx; i++) {
         // Compute u[0][i], u[ny-1][i], v[0][i], v[ny-1][i]
         u[0][i] = 0;
